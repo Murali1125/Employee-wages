@@ -4,6 +4,7 @@
 # Check Employee is Present or Absent
 # Calculate Daily Employee Wage assume per hour wage =20 daily working hours 8
 #Add Part time Employee & Wage - Assume Part time Hour is 4
+#Solving using Case Statement
 #-----------------------------------------------------------------------------------
 
 echo "   ------------ Welcome to Employee Wage Computation Program ---------------    "
@@ -15,12 +16,10 @@ wage=20
 fulltime=8
 parttime=4
 # if employee present calculate wage
-if [[ attendance -eq 1 ]]
-then
+case attedance in 
+	1)
 	# total wage = wage per hour * total working hours
-	total_wage=$(( wage * fulltime ))
-elif [[  attendance -eq 2 ]]
-then
-	 total_wage=$(( wage * parttime ))
-
-fi
+		total_wage=$(( wage * fulltime )) ;;
+	2) #partime wage calculation
+		total_wage=$(( wage * parttime )) ;;
+esac
