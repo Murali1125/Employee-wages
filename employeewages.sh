@@ -21,8 +21,14 @@ parttime=4
 count=1
 # hours variable
 hours=0
-while [[ $count -le 20 -a $hours -le 100 ]]
-do
+
+function work_hours () {
+	if  [[ $count -gt 20 -o $hours -ge 100 ]]
+	then
+		return
+	fi
+	# randomly select attedance of the employee 2-parttime present 1-ful time present 0-absent
+	attendance=$(( RANDOM % 3 ))
 	# if employee present calculate wage
 	case attedance in 
 		1) #increase the days and hourse
@@ -42,7 +48,9 @@ do
 		0) # absent then increase the day only no hours
 	esac
 	(( count++ ))
-done
+	work_hours
+}
+
 # total wage = total hours * 20
 total_wage=$(( hours * 20 ))
 echo " wage of the employee  =  $total_wage "
